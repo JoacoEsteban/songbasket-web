@@ -5,6 +5,10 @@
   "repository": "git@github.com:JoacoEsteban/songbasket-www.git",
   "author": "Joaco Esteban <dev.joaco.esteban@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
