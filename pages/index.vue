@@ -1,5 +1,4 @@
 <template>
-  <Metas />
   <div class="app-container df global-center full" :class="{ warping }">
     <div class="block-container text-center df fldc global-center fade-in" :class="{ hidden }">
       <h1>SongBasket</h1>
@@ -11,50 +10,35 @@
   </div>
 </template>
 
-<script>
-import Metas from './Metas.vue'
-export default {
-  name: 'App',
-  components: {
-    Metas
-  },
-  data () {
-    return {
-      hidden: true,
-      warping: false,
-      downloadUrl: 'http://download.songbasket.com'
-    }
-  },
-  mounted () {
-    setTimeout(this.show, 1000)
-  },
-  methods: {
-    async goToDownload () {
-      this.warping = true
-      await this.hide()
-      window.location.href = this.downloadUrl
-      // await this.show()
-      // this.warping = false
-    },
-    show () {
-      return new Promise((resolve, reject) => {
-        this.hidden = false
-        setTimeout(resolve, 3000)
-      })
-    },
-    hide () {
-      return new Promise((resolve, reject) => {
-        this.hidden = true
-        setTimeout(resolve, 2500)
-      })
-    }
-  }
+<script setup lang="ts">
+const hidden = ref(true)
+const warping = ref(false)
+const downloadUrl = 'http://download.songbasket.com'
+
+async function goToDownload () {
+  warping.value = true
+  await hide()
+  window.location.href = downloadUrl
+  // await show()
+  // warping = false
 }
+
+function show () {
+  return new Promise((resolve, reject) => {
+    hidden.value = false
+    setTimeout(resolve, 3000)
+  })
+}
+function hide () {
+  return new Promise((resolve, reject) => {
+    hidden.value = true
+    setTimeout(resolve, 2500)
+  })
+}
+
+setTimeout(show, 1000)
 </script>
 
-<style lang="scss">
-@import '../styles/main';
-</style>
 <style lang="less" scoped>
 .app-container {
   transition: background-color 2s var(--bezier-round-inverted);
@@ -103,4 +87,5 @@ h1 {
   button {
     font-size: 5vw;
   }
-}</style>
+}
+</style>
