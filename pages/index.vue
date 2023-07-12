@@ -13,7 +13,7 @@
 <script setup lang="ts">
 const hidden = ref(true)
 const warping = ref(false)
-const downloadUrl = 'http://download.songbasket.com'
+const downloadUrl = 'https://github.com/JoacoEsteban/SongBasket/releases/tag/v0.1.12-beta'
 
 async function goToDownload () {
   warping.value = true
